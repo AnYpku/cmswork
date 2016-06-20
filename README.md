@@ -5,3 +5,5 @@
 [4th homework](https://www.zybuluo.com/Anying/note/413094)
 
 [5th homework](https://www.zybuluo.com/Anying/note/413083)
+
+[6th homework](https://www.zybuluo.com/Anying/note/413367)
