@@ -1,0 +1,154 @@
+参考程序：    
+#include<graphics.h>
+#include<math.h>
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+#define A 480
+#define B 120
+main()
+{
+ char q;
+ int gdriver=VGA,gmode=VGAHI;
+ int i,cl=0,w=1;
+ float x,y,v1,v2,a1,a2,L,M,m,k,X,X0,F,F1,F2,g,c,s,G,G1,G2;
+ float sp=2;
+ initgraph(&gdriver,&gmode,"");
+
+BG: cleardevice();
+ setcolor(5);
+ setbkcolor(0);
+ settextstyle(3,0,4);
+ outtextxy(80,50,"Single Pendulum Parameters Input");
+ setcolor(1);
+ rectangle(70,50,600,90);
+        setcolor(2);
+ rectangle(65,45,605,95);
+ setcolor(14);
+ rectangle(60,40,610,100);
+ setcolor(5);
+ moveto(100,100);
+ gotoxy(49,12);printf("");
+ settextstyle(1,0,2);
+ outtextxy(80,130,"PLEASE INPUT :  ( 0<L<120 )");
+ setcolor(15);
+ line(50,160,620,160);
+ setcolor(5);
+ outtextxy(80,170,"The Length Of Pendulum L : ");
+ scanf("%f",&L);
+ gotoxy(35,15);printf("");
+ settextstyle(1,0,2);
+ outtextxy(80,205,"Elastic Coefficient k : ");
+ gotoxy(40,14);printf("");
+ scanf("%f",&k);
+ outtextxy(80,250,"The Quality Of Spherule  M :");
+ gotoxy(50,17);printf("");
+ scanf("%f",&M);
+ outtextxy(80,297,"The Quality Of Pedulum Line  m : ");
+ gotoxy(58,20);printf("");
+ scanf("%f",&m);
+ setcolor(15);
+ line(50,380,620,380);
+ setcolor(5);
+ outtextxy(60,400,"Press E to Quit AND Press Any Other Key to Go on");
+ q=getch();
+ if(q=='e'||q=='E') goto END;
+
+ cleardevice();
+
+GN: setcolor(2);
+ setbkcolor(0);
+ g=9.8;G=m*g;x=A+L;y=B;v1=0;v2=0;
+
+ settextstyle(1,0,3);
+ outtextxy(380,20,"Single Pendulum");
+ settextstyle(1,0,1);
+ outtextxy(390,60,"(with a spherule)");
+ settextstyle(1,0,3);
+ outtextxy(20,40,"S-Pendulum Parameters :");
+ settextstyle(1,0,1);
+ moveto(100,90);
+ gotoxy(29,7);printf("%.1f",L);
+ outtextxy(30,90,"Length of line  L :");
+ gotoxy(30,9);printf("%.2f",k);
+ outtextxy(30,123,"P-Coefficient  k :");
+ gotoxy(30,11);printf("%.2f",M);
+ outtextxy(30,156,"Spherule Quality M :");
+ gotoxy(30,13);printf("%.2f",m);
+ outtextxy(30,189,"Line Quality m :");
+ gotoxy(32,15);printf("%d",w);
+ outtextxy(30,222,"Control Increment w : ");
+
+ settextstyle(2,0,6);
+ outtextxy(25,290,"Exegesis :");
+ settextstyle(2,0,4);
+ outtextxy(30,320,"  Demo Speed : A -- accelerate , S -- decelerate");
+ outtextxy(30,340,"   SP-Length : - -- decrease   , + -- increase  ");
+ outtextxy(30,360," Coefficient : < -- decrease   , > -- increase  ");
+ outtextxy(30,380," Sph-Quality : Z -- decrease   , X -- increase  ");
+ outtextxy(30,400,"Line-Quality : C -- decrease   , V -- increase  ");
+ outtextxy(30,420,"   Increment : Q -- decrease   , W -- increase  ");
+ outtextxy(30,440," Press R to Reload AND Press E to Quit");
+ rectangle(20,285,320,460);
+ do
+ {
+   for(i=0;i<1;i++)
+   {
+    setcolor(cl++);
+    cl %= 16;
+    for(i=0;i<180;i=i+5)
+    {
+     arc(A,B,180+i,i+182,L);
+    }
+    setcolor(0);
+    line(x,y,A,B);
+    setcolor(11);
+    circle(x,y,1);
+    X0=sqrt((x-A)*(x-A)+(y-B)*(y-B));
+    X=X0-L;
+    c=(x-A)/X0;
+    s=(y-B)/X0;
+    G1=G*c;
+    G2=G*s;
+    F=k*X;
+    F1=-F*c;
+    F2=M*g-F*s-G2*s+G1*c;
+    a1=F1/M;
+    a2=F2/M;
+    v1=v1+a1;
+    v2=v2+a2;
+    x=x+v1;
+    y=y+v2;
+    setcolor(1);
+    circle(x,y,1);
+    setcolor(14);
+    line(x,y,A,B);
+    for(i=1;i<sp;i++)
+    {
+                    delay(1000);
+    }
+
+   }
+ }
+ while(!kbhit()==1);
+ q=getch();
+ cleardevice();
+ if(q=='e'||q=='E') goto END;
+ if(q=='r'||q=='R') goto BG;
+ if(q=='s'||q=='s') sp=sp+1;
+ if(q=='a'||q=='A') sp=sp-1;
+ if(q=='-'||q=='_') L=L-1*w;
+ if(q=='='||q=='+') L=L+1*w;
+ if(q==','||q=='<') k=k-0.1*w;
+ if(q=='.'||q=='>') k=k+0.1*w;
+ if(q=='z'||q=='Z') M=M-0.1*w;
+ if(q=='x'||q=='X') M=M+0.1*w;
+ if(q=='c'||q=='C') m=m-0.1*w;
+ if(q=='v'||q=='V') m=m+0.1*w;
+ if(q=='w'||q=='W') w=w+1;
+ if(q=='q'||q=='Q') w=w-1;
+ goto GN;
+
+
+END: closegraph();
+}
