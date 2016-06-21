@@ -9,3 +9,7 @@
 [6th homework](https://www.zybuluo.com/Anying/note/413367)
 
 [7th homework](https://www.zybuluo.com/Anying/note/413411)
+
+[8th homework](https://www.zybuluo.com/Anying/note/413704)
+
+
