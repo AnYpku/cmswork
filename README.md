@@ -16,4 +16,6 @@
 
 [期末论文](https://www.zybuluo.com/Anying/note/413919)
 
+[the final paper](https://github.com/anying2016/computationalphysics_N2013301020156/blob/master/the-final-paper/%E8%AE%A1%E7%AE%97%E7%89%A9%E7%90%86%E6%9C%9F%E6%9C%AB%E8%AE%BA%E6%96%87.pdf)
+
 
